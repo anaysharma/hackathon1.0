@@ -1,71 +1,75 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 export default function Login(): JSX.Element {
   const [toggleVisibility, setToggleVisibility] = useState<boolean>(false);
 
   return (
-    <main className="flex items-center relaive justify-center max-sm:justify-end flex-col h-screen bg-slate-100 px-4">
-      <div className="absolute left-0 h-1/2 right-0 top-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-100"></div>
-        <img src="bg.jpg" alt="" className="h-full w-full object-cover" />
-      </div>
-      <h1 className="font-bold z-10 drop-shadow-lg text-2xl max-sm:flex-1 flex items-center py-6">
-        Police Feedback System
-      </h1>
-      <form
-        action="/"
-        method="post"
-        className="bg-white border w-full p-4 rounded-lg mx-4 shadow-md grid gap-3 sm:w-[500px] z-10"
-      >
-        <legend className="font-bold text-lg">Login to get started: </legend>
-        <div className="grid gap-4">
-          <label className="grid text-slate-600 gap-2" htmlFor="username">
-            Username
-            <input
-              className="border bg-slate-50 rounded px-4 py-2"
-              type="text"
-              name="username"
-              id="username"
-              placeholder="type your username"
-            />
-          </label>
-          <label className="grid text-slate-600 gap-2" htmlFor="password">
-            Password
-            <div className="relative flex items-center">
+    <>
+      <main className="flex items-center relaive justify-center max-sm:justify-end flex-col h-screen bg-slate-100 px-4">
+        <div className="absolute left-0 h-1/2 right-0 top-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-100"></div>
+          <img src="bg.jpg" alt="" className="h-full w-full object-cover" />
+        </div>
+        <h1 className="font-bold z-10 drop-shadow-lg text-2xl max-sm:flex-1 flex items-center py-6">
+          Police Feedback System
+        </h1>
+        <form
+          action="/"
+          method="post"
+          className="bg-white border w-full p-4 rounded-lg mx-4 shadow-md grid gap-3 sm:w-[500px] z-10"
+        >
+          <legend className="font-bold text-lg">Login to get started: </legend>
+          <div className="grid gap-4">
+            <label className="grid text-slate-600 gap-2" htmlFor="username">
+              Username
               <input
-                className="border rounded bg-slate-50 px-4 py-2 w-full"
-                type={toggleVisibility ? "text" : "password"}
-                name="password"
-                id="password"
-                placeholder="type here"
+                className="border bg-slate-50 rounded px-4 py-2"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="type your username"
               />
-              <button
-                className="absolute right-3"
-                type="button"
-                onClick={() => setToggleVisibility((prev) => !prev)}
-              >
-                {toggleVisibility ? <IconEyeOpen /> : <IconEyeClose />}
-              </button>
-            </div>
-          </label>
+            </label>
+            <label className="grid text-slate-600 gap-2" htmlFor="password">
+              Password
+              <div className="relative flex items-center">
+                <input
+                  className="border rounded bg-slate-50 px-4 py-2 w-full"
+                  type={toggleVisibility ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  placeholder="type here"
+                />
+                <button
+                  className="absolute right-3"
+                  type="button"
+                  onClick={() => setToggleVisibility((prev) => !prev)}
+                >
+                  {toggleVisibility ? <IconEyeOpen /> : <IconEyeClose />}
+                </button>
+              </div>
+            </label>
+          </div>
+          <div className="pt-4">
+            <button
+              className="py-2 bg-sky-600 text-white rounded w-full hover:bg-sky-500"
+              type="button"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+        <div className="text-center py-6">
+          don't have an account yet?{" "}
+          <Link to="/signup" className="text-sky-700 hover:underline">
+            Sign up
+          </Link>
         </div>
-        <div className="pt-4">
-          <button
-            className="py-2 bg-sky-600 text-white rounded w-full hover:bg-sky-500"
-            type="button"
-          >
-            Login
-          </button>
-        </div>
-      </form>
-      <div className="text-center py-6">
-        don't have an account yet?{" "}
-        <Link to="/signup" className="text-sky-700 hover:underline">
-          Sign up
-        </Link>
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }
 
