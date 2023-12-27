@@ -4,8 +4,11 @@ import questions from "../data/questions.json";
 import FeedbackQuestion from "../components/FeedbackQuestion";
 import setDocumentTitle from "../utils/setDocumentTitle";
 import { useNavigate } from "react-router-dom";
+import SuccessDialog from "../components/SuccessDialog";
+import { useState } from "react";
 export default function CreateNewPost() {
   setDocumentTitle("New Post | Police Feedback Hub");
+  const [toggleSuccessPopup, setToggleSuccessPopup] = useState<boolean>(false);
   const navigate = useNavigate();
   return (
     <motion.main
@@ -64,7 +67,11 @@ export default function CreateNewPost() {
               Cancel
             </button>
             <button
-              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                setToggleSuccessPopup(true);
+              }}
+              type="button"
               className="rounded border-2 border-sky-600 bg-sky-600 px-10 py-1 text-white hover:border-sky-500 hover:bg-sky-500"
             >
               Submit
@@ -72,6 +79,9 @@ export default function CreateNewPost() {
           </div>
         </form>
       </div>
+      {toggleSuccessPopup && (
+        <SuccessDialog setToggle={setToggleSuccessPopup} />
+      )}
     </motion.main>
   );
 }

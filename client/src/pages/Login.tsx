@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import setDocumentTitle from "../utils/setDocumentTitle";
 
 export default function Login(): JSX.Element {
+  const navigate = useNavigate();
+
   const [toggleVisibility, setToggleVisibility] = useState<boolean>(false);
   setDocumentTitle("Login | Police Feedback Hub");
 
@@ -54,12 +56,19 @@ export default function Login(): JSX.Element {
               </div>
             </label>
           </div>
-          <div className="pt-4">
+          <div className="flex flex-wrap items-center gap-4 pt-4">
             <button
-              className="w-full rounded bg-sky-600 py-2 text-white hover:bg-sky-500"
+              className="flex-grow basis-48 rounded border-2 border-sky-600 bg-sky-600 py-2 text-white hover:border-sky-500 hover:bg-sky-500"
               type="button"
             >
               Login
+            </button>
+            <button
+              onClick={() => navigate("/")}
+              className="flex-grow basis-48 rounded border-2 border-sky-600 py-2 text-sky-700 hover:border-sky-500 hover:bg-sky-500 hover:text-white"
+              type="button"
+            >
+              cancel
             </button>
           </div>
         </form>
