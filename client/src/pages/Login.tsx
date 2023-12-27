@@ -9,36 +9,36 @@ export default function Login(): JSX.Element {
 
   return (
     <>
-      <main className="flex items-center relaive justify-center max-sm:justify-end flex-col h-svh bg-slate-100 px-4">
-        <div className="absolute left-0 h-1/2 right-0 top-0 z-0">
+      <main className="relaive flex h-svh flex-col items-center justify-center bg-slate-100 px-4 max-sm:justify-end">
+        <div className="absolute left-0 right-0 top-0 z-0 h-1/2">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-100"></div>
           <img src="bg.jpg" alt="" className="h-full w-full object-cover" />
         </div>
-        <h1 className="font-bold z-10 drop-shadow-lg text-2xl max-sm:flex-1 flex items-center py-6">
+        <h1 className="z-10 flex items-center py-6 text-2xl font-bold drop-shadow-lg max-sm:flex-1">
           Police Feedback System
         </h1>
         <form
           action="/"
           method="post"
-          className="bg-white border w-full p-4 rounded-lg mx-4 shadow-md grid gap-3 sm:w-[500px] z-10"
+          className="z-10 mx-4 grid w-full gap-3 rounded-lg border bg-white p-4 shadow-md sm:w-[500px]"
         >
-          <legend className="font-bold text-lg">Login to get started: </legend>
+          <legend className="text-lg font-bold">Login to get started: </legend>
           <div className="grid gap-4">
-            <label className="grid text-slate-600 gap-2" htmlFor="username">
+            <label className="grid gap-2 text-slate-600" htmlFor="username">
               Username
               <input
-                className="border bg-slate-50 rounded px-4 py-2"
+                className="rounded border bg-slate-50 px-4 py-2"
                 type="text"
                 name="username"
                 id="username"
                 placeholder="type your username"
               />
             </label>
-            <label className="grid text-slate-600 gap-2" htmlFor="password">
+            <label className="grid gap-2 text-slate-600" htmlFor="password">
               Password
               <div className="relative flex items-center">
                 <input
-                  className="border rounded bg-slate-50 px-4 py-2 w-full"
+                  className="w-full rounded border bg-slate-50 px-4 py-2"
                   type={toggleVisibility ? "text" : "password"}
                   name="password"
                   id="password"
@@ -56,14 +56,14 @@ export default function Login(): JSX.Element {
           </div>
           <div className="pt-4">
             <button
-              className="py-2 bg-sky-600 text-white rounded w-full hover:bg-sky-500"
+              className="w-full rounded bg-sky-600 py-2 text-white hover:bg-sky-500"
               type="button"
             >
               Login
             </button>
           </div>
         </form>
-        <div className="text-center py-6">
+        <div className="py-6 text-center">
           don't have an account yet?{" "}
           <Link to="/signup" className="text-sky-700 hover:underline">
             Sign up

@@ -2,110 +2,110 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="w-full relative bg-white">
-      <div className="grid grid-cols-4 max-lg:grid-cols-3 lg:px-4 max-lg:px-10 max-lg:gap-4 md:flex-row max-w-7xl mx-auto py-16 max-md:flex max-md:flex-col">
+    <footer className="relative w-full bg-white">
+      <div className="mx-auto grid max-w-7xl grid-cols-4 py-16 max-lg:grid-cols-3 max-lg:gap-4 max-lg:px-10 max-md:flex max-md:flex-col md:flex-row lg:px-4">
         <div className="max-w-[300px]">
-          <span className="font-bold text-xl">Police Feedback Hub</span>
+          <span className="text-xl font-bold">Police Feedback Hub</span>
           <div className="mt-6 max-w-md">
-            <span className="text-sky-600 block">Contact :</span>
+            <span className="block text-sky-600">Contact :</span>
             Call on: +91 1234567890
             <br /> Email at: example@gmail.com
           </div>
           <div className="mt-6 max-w-md">
-            <span className="text-sky-600 block">Mail us at:</span>
+            <span className="block text-sky-600">Mail us at:</span>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro,
             laudantium?
           </div>
         </div>
         <div>
-          <h3 className="text-xl font-bold mb-6">Navigate</h3>
+          <h3 className="mb-6 text-xl font-bold">Navigate</h3>
           <ul className="grid gap-2">
             <li className="hover:text-sky-600">
-              <span className="text-sky-600 mr-2">■</span>Posts
+              <span className="mr-2 text-sky-600">■</span>Posts
             </li>
             <li className="hover:text-sky-600">
-              <span className="text-sky-600 mr-2">■</span>Helpline
+              <span className="mr-2 text-sky-600">■</span>Helpline
             </li>
             <li className="hover:text-sky-600">
-              <span className="text-sky-600 mr-2">■</span>Submit Feedback
+              <span className="mr-2 text-sky-600">■</span>Submit Feedback
             </li>
             <li className="hover:text-sky-600">
-              <span className="text-sky-600 mr-2">■</span>
+              <span className="mr-2 text-sky-600">■</span>
               Compaint status
             </li>
             <li className="hover:text-sky-600">
-              <span className="text-sky-600 mr-2">■</span>Account
+              <span className="mr-2 text-sky-600">■</span>Account
             </li>
           </ul>
         </div>
         <div>
-          <h3 className="text-xl font-bold mb-6">Links</h3>
+          <h3 className="mb-6 text-xl font-bold">Links</h3>
           <ul className="grid gap-2">
             <li className="hover:text-sky-600">
               <Link to="/" title="go to home page">
-                <span className="text-sky-600 mr-2">■</span>Update records
+                <span className="mr-2 text-sky-600">■</span>Update records
               </Link>
             </li>
             <li className="hover:text-sky-600">
               <Link to="/" title="go to abouts page">
-                <span className="text-sky-600 mr-2">■</span>Generate QR
+                <span className="mr-2 text-sky-600">■</span>Generate QR
               </Link>
             </li>
             <li className="hover:text-sky-600">
               <Link to="/" title="go to services page">
-                <span className="text-sky-600 mr-2">■</span>Add Station
+                <span className="mr-2 text-sky-600">■</span>Add Station
               </Link>
             </li>
             <li className="hover:text-sky-600">
               <Link to="/" title="go to projects page">
-                <span className="text-sky-600 mr-2">■</span>Documents
+                <span className="mr-2 text-sky-600">■</span>Documents
               </Link>
             </li>
             <li className="hover:text-sky-600">
               <Link to="/" title="go to blogs page">
-                <span className="text-sky-600 mr-2">■</span>Your Activities
+                <span className="mr-2 text-sky-600">■</span>Your Activities
               </Link>
             </li>
             <li className="hover:text-sky-600">
               <Link to="/" title="go to contacts page">
-                <span className="text-sky-600 mr-2">■</span>Brouchers
+                <span className="mr-2 text-sky-600">■</span>Brouchers
               </Link>
             </li>
             <li className="hover:text-sky-600">
               <Link to="/" title="go to trainings page">
-                <span className="text-sky-600 mr-2">■</span>Training
+                <span className="mr-2 text-sky-600">■</span>Training
               </Link>
             </li>
             <li className="hover:text-sky-600">
               <Link to="/" title="go to verify">
-                <span className="text-sky-600 mr-2">■</span>Verify
+                <span className="mr-2 text-sky-600">■</span>Verify
               </Link>
             </li>
           </ul>
         </div>
-        <div className="flex flex-col min-w-[300px] max-lg:col-span-3 max-lg:pt-6">
-          <h3 className="text-xl font-bold mb-6">Newsletter</h3>
+        <div className="flex min-w-[300px] flex-col max-lg:col-span-3 max-lg:pt-6">
+          <h3 className="mb-6 text-xl font-bold">Newsletter</h3>
           <p>Signup to our newsletter to get updates, news or insights.</p>
-          <div className="flex lg:flex-col max-lg:items-center max-lg:gap-6 max-sm:flex-col max-sm:items-stretch max-sm:gap-0">
+          <div className="flex max-lg:items-center max-lg:gap-6 max-sm:flex-col max-sm:items-stretch max-sm:gap-0 lg:flex-col">
             <input
-              className="py-2 my-4 max-lg:flex-1 px-6 rounded bg-slate-100 border"
+              className="my-4 rounded border bg-slate-100 px-6 py-2 max-lg:flex-1"
               type="email"
               name="email"
               id="email-input"
               placeholder="Enter your email"
             />
-            <button className="rounded min-w-40 bg-sky-600 py-2 hover:bg-sky-500 text-white">
+            <button className="min-w-40 rounded bg-sky-600 py-2 text-white hover:bg-sky-500">
               Sign Up
             </button>
           </div>
         </div>
       </div>
       <div className="bg-sky-700 py-8">
-        <div className="max-w-7xl px-6 mx-auto flex flex-col md:flex-row items-center gap-4 justify-between">
-          <div className="flex items-center justify-center w-min gap-2">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
+          <div className="flex w-min items-center justify-center gap-2">
             <a className="text-white" target="blank" href="#">
               <svg
-                className="bg-sky-600 rounded p-2 h-8 w-8"
+                className="h-8 w-8 rounded bg-sky-600 p-2"
                 xmlns="http://www.w3.org/2000/svg"
                 width="46"
                 height="46"
@@ -119,7 +119,7 @@ export default function Footer() {
             </a>
             <a className="text-white" target="blank" href="#">
               <svg
-                className="bg-sky-600 rounded p-2 h-8 w-8"
+                className="h-8 w-8 rounded bg-sky-600 p-2"
                 xmlns="http://www.w3.org/2000/svg"
                 width="46"
                 height="46"
@@ -135,7 +135,7 @@ export default function Footer() {
             </a>
             <a className="text-white" target="blank" href="#">
               <svg
-                className="bg-sky-600 rounded p-2 h-8 w-8"
+                className="h-8 w-8 rounded bg-sky-600 p-2"
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
                 height="32"
@@ -149,7 +149,7 @@ export default function Footer() {
             </a>
             <a className="text-white" target="blank" href="#">
               <svg
-                className="bg-sky-600 rounded p-2 h-8 w-8"
+                className="h-8 w-8 rounded bg-sky-600 p-2"
                 xmlns="http://www.w3.org/2000/svg"
                 width="46"
                 height="46"
@@ -168,7 +168,7 @@ export default function Footer() {
         </div>
       </div>
       <img
-        className="absolute grayscale bottom-0 left-0 -z-20 opacity-20"
+        className="absolute bottom-0 left-0 -z-20 opacity-20 grayscale"
         src="bg_footer_2.webp.webp"
         alt="image for illustration purspose"
         title="image for illustration purspose"

@@ -11,18 +11,18 @@ export default function FeedbackQuestion({
 }: feedbackQuestionProps): JSX.Element {
   const queId = question.split(" ").join("_");
   return (
-    <div className="bg-white rounded-md shadow overflow-hidden">
+    <div className="overflow-hidden rounded-md bg-white shadow">
       <fieldset id={queId} className="flex flex-col">
-        <legend className="font-bold flex items-start md:items-center px-4 py-3 border-b bg-slate-50 w-full">
-          <span className="mr-2 text-sky-700 text-lg">{srno}.</span>
+        <legend className="flex w-full items-start border-b bg-slate-50 px-4 py-3 font-bold md:items-center">
+          <span className="mr-2 text-lg text-sky-700">{srno}.</span>
           {question}
         </legend>
-        <div className="p-4 grid">
+        <div className="grid p-4">
           {option.map((el, idx) => (
             <label
               key={`lksdjlkg${idx}`}
               htmlFor={el}
-              className="flex gap-2 items-center cursor-pointer hover:bg-slate-50 rounded py-2 px-3"
+              className="flex cursor-pointer items-center gap-2 rounded px-3 py-2 hover:bg-slate-50"
             >
               <input
                 className="h-5 w-5 accent-sky-600"

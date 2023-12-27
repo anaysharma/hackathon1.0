@@ -14,18 +14,18 @@ export default function CreateNewPost() {
       exit={{ x: 300, opacity: 0 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-lg flex py-4 items-center">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex items-center py-4 text-lg">
           <Link
             to={".."}
-            className="flex gap-2 items-center hover:bg-white rounded px-3 py-2"
+            className="flex items-center gap-2 rounded px-3 py-2 hover:bg-white"
           >
             <IconLeftArrow />
             go back
           </Link>
-          <h2 className="font-bold pl-4 flex-1">Create new feedback post</h2>
+          <h2 className="flex-1 pl-4 font-bold">Create new feedback post</h2>
         </div>
-        <form className="grid gap-3 max-w-5xl mx-auto px-3 text-sm">
+        <form className="mx-auto grid max-w-5xl gap-3 px-3 text-sm">
           {questions.questions.map((que, idx) => (
             <FeedbackQuestion
               srno={idx + 1}
@@ -36,11 +36,11 @@ export default function CreateNewPost() {
           ))}
           <div
             id="other"
-            className="rounded-md bg-white overflow-hidden shadow"
+            className="overflow-hidden rounded-md bg-white shadow"
           >
             <label
               htmlFor="other"
-              className="font-bold flex flex-col gap-3 px-4 py-3 border-b w-full"
+              className="flex w-full flex-col gap-3 border-b px-4 py-3 font-bold"
             >
               Please share any specific feedback you have about your experience,
               either positive or constructive [300 words] (optional)
@@ -50,22 +50,22 @@ export default function CreateNewPost() {
                 id="other"
                 cols={30}
                 rows={5}
-                className="border shadow-inner rounded py-1 px-3"
+                className="rounded border px-3 py-1 shadow-inner"
                 placeholder="start typing here"
               ></textarea>
             </label>
           </div>
-          <div className="flex gap-4 justify-center mb-6 py-6 bg-white rounded">
+          <div className="mb-6 flex justify-center gap-4 rounded bg-white py-6">
             <button
               type="button"
-              className="px-10 py-1 text-sky-700 hover:bg-sky-500 hover:border-sky-500 rounded border-sky-600 border-2 hover:text-white"
+              className="rounded border-2 border-sky-600 px-10 py-1 text-sky-700 hover:border-sky-500 hover:bg-sky-500 hover:text-white"
               onClick={() => navigate(-1)}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-10 py-1 text-white hover:bg-sky-500 hover:border-sky-500 bg-sky-600 rounded border-sky-600 border-2"
+              className="rounded border-2 border-sky-600 bg-sky-600 px-10 py-1 text-white hover:border-sky-500 hover:bg-sky-500"
             >
               Submit
             </button>

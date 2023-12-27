@@ -7,55 +7,55 @@ export default function Signup(): JSX.Element {
 
   return (
     <>
-      <main className="flex relative items-center justify-center max-sm:justify-end flex-col h-svh bg-slate-100 px-4">
-        <div className="absolute left-0 h-1/2 right-0 top-0 z-0">
+      <main className="relative flex h-svh flex-col items-center justify-center bg-slate-100 px-4 max-sm:justify-end">
+        <div className="absolute left-0 right-0 top-0 z-0 h-1/2">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-100"></div>
           <img src="bg.jpg" alt="" className="h-full w-full object-cover" />
         </div>
-        <h1 className="font-bold text-2xl z-10 max-sm:flex-1 flex items-center py-6">
+        <h1 className="z-10 flex items-center py-6 text-2xl font-bold max-sm:flex-1">
           Police Feedback System
         </h1>
         <form
           action="/"
           method="post"
-          className="bg-white z-10 border w-full p-4 rounded-lg mx-4 shadow-md grid gap-3 sm:w-[500px]"
+          className="z-10 mx-4 grid w-full gap-3 rounded-lg border bg-white p-4 shadow-md sm:w-[500px]"
         >
-          <legend className="font-bold text-lg">Quick Signup: </legend>
+          <legend className="text-lg font-bold">Quick Signup: </legend>
           <div className="grid gap-4">
-            <label className="grid text-slate-600 gap-2" htmlFor="firstname">
+            <label className="grid gap-2 text-slate-600" htmlFor="firstname">
               First Name
               <input
-                className="border bg-slate-50 rounded px-4 py-2"
+                className="rounded border bg-slate-50 px-4 py-2"
                 type="text"
                 name="firstname"
                 id="firstname"
                 placeholder="type your first name"
               />
             </label>
-            <label className="grid text-slate-600 gap-2" htmlFor="firstname">
+            <label className="grid gap-2 text-slate-600" htmlFor="firstname">
               Last Name
               <input
-                className="border bg-slate-50 rounded px-4 py-2"
+                className="rounded border bg-slate-50 px-4 py-2"
                 type="text"
                 name="lastname"
                 id="lastname"
                 placeholder="type your last name"
               />
             </label>
-            <label className="grid text-slate-600 gap-2" htmlFor="firstname">
+            <label className="grid gap-2 text-slate-600" htmlFor="firstname">
               Mobile Number
               <input
-                className="border bg-slate-50 rounded px-4 py-2"
+                className="rounded border bg-slate-50 px-4 py-2"
                 type="text"
                 name="number"
                 id="number"
                 placeholder="+91 not required"
               />
             </label>
-            <label className="grid text-slate-600 gap-2" htmlFor="firstname">
+            <label className="grid gap-2 text-slate-600" htmlFor="firstname">
               Permanent Address
               <input
-                className="border bg-slate-50 rounded px-4 py-2"
+                className="rounded border bg-slate-50 px-4 py-2"
                 type="text"
                 name="address"
                 id="address"
@@ -65,14 +65,14 @@ export default function Signup(): JSX.Element {
           </div>
           <div className="pt-4">
             <button
-              className="py-2 bg-sky-600 text-white rounded w-full hover:bg-sky-500"
+              className="w-full rounded bg-sky-600 py-2 text-white hover:bg-sky-500"
               type="button"
             >
               Sign Up
             </button>
           </div>
         </form>
-        <div className="text-center py-6">
+        <div className="py-6 text-center">
           already have an account?{" "}
           <Link to="/login" className="text-sky-700 hover:underline">
             login instead

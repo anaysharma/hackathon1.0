@@ -6,7 +6,7 @@ export default function Layout(): JSX.Element {
   return (
     <>
       <Navbar />
-      <div className="pt-12 max-md:pt-24 bg-slate-100">
+      <div className="bg-slate-100 pt-12 max-md:pt-24">
         <Outlet />
       </div>
       <Footer />

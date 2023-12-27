@@ -11,8 +11,8 @@ export default function Home(): JSX.Element {
       transition={{ duration: 0.2, ease: "easeOut" }}
     >
       <Header />
-      <section className="py-10 px-6">
-        <h2 className="text-center pb-6 font-bold text-lg text-sky-600">
+      <section className="px-6 py-10">
+        <h2 className="pb-6 text-center text-lg font-bold text-sky-600">
           Tell us your opinion about the services we have provided you
         </h2>
         <CreatePostForm />
