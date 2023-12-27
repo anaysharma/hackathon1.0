@@ -4,10 +4,11 @@ export default function Navbar(): JSX.Element {
   return (
     <nav className="md:px-4 md:py-1 fixed inset-0 bottom-auto bg-white shadow-md z-50">
       <div className="items-center grid grid-cols-3 max-md:grid-cols-2 max-w-7xl mx-auto lg:px-4">
-        <div className="font-bold max-md:py-2 max-md:pl-4">
+        <div className="font-bold max-md:py-2 max-md:pl-4 flex items-center gap-3">
           <img src="/logo.png" alt="" className="h-10" />
+          <span className="font-bold max-lg:hidden">Police Feedback Hub</span>
         </div>
-        <ul className="flex gap-3 max-md:col-start-1 max-md:col-end-3 py-3 justify-center max-md:border-t">
+        <ul className="flex gap-3 max-md:col-start-1 max-md:col-end-3 py-3 justify-center max-md:border-t max-sm:justify-evenly">
           <li>
             <Link to="/">Posts</Link>
           </li>

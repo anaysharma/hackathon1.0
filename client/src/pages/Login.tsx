@@ -9,7 +9,7 @@ export default function Login(): JSX.Element {
 
   return (
     <>
-      <main className="flex items-center relaive justify-center max-sm:justify-end flex-col h-screen bg-slate-100 px-4">
+      <main className="flex items-center relaive justify-center max-sm:justify-end flex-col h-svh bg-slate-100 px-4">
         <div className="absolute left-0 h-1/2 right-0 top-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-100"></div>
           <img src="bg.jpg" alt="" className="h-full w-full object-cover" />

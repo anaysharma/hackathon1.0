@@ -20,12 +20,12 @@ export default function FeedbackQuestion({
         <div className="p-4 grid">
           {option.map((el, idx) => (
             <label
+              key={`lksdjlkg${idx}`}
               htmlFor={el}
               className="flex gap-2 items-center cursor-pointer hover:bg-slate-50 rounded py-2 px-3"
             >
               <input
                 className="h-5 w-5 accent-sky-600"
-                key={`sdkbfkja${idx}`}
                 type="radio"
                 value={el}
                 name={queId}

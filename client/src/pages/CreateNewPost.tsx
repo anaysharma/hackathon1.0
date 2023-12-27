@@ -2,7 +2,11 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import questions from "../data/questions.json";
 import FeedbackQuestion from "../components/FeedbackQuestion";
+import setDocumentTitle from "../utils/setDocumentTitle";
+import { useNavigate } from "react-router-dom";
 export default function CreateNewPost() {
+  setDocumentTitle("New Post | Police Feedback Hub");
+  const navigate = useNavigate();
   return (
     <motion.main
       initial={{ x: 200, opacity: 0 }}
@@ -55,6 +59,7 @@ export default function CreateNewPost() {
             <button
               type="button"
               className="px-10 py-1 text-sky-700 hover:bg-sky-500 hover:border-sky-500 rounded border-sky-600 border-2 hover:text-white"
+              onClick={() => navigate(-1)}
             >
               Cancel
             </button>

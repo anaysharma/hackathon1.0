@@ -5,9 +5,14 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { AnimatePresence } from "framer-motion";
 import CreateNewPost from "./pages/CreateNewPost";
+import { useLayoutEffect } from "react";
 
 function App() {
   const location = useLocation();
+  useLayoutEffect(
+    () => document.documentElement.scrollTo(0, 0),
+    [location.pathname]
+  );
   return (
     <AnimatePresence mode="wait">
       <Routes key={location.pathname} location={location}>
