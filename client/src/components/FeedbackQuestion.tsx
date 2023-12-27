@@ -30,6 +30,7 @@ export default function FeedbackQuestion({
                 value={el}
                 name={queId}
                 id={el}
+                defaultChecked={idx ? false : true}
               />
               <span>{el}</span>
             </label>

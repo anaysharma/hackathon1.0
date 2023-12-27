@@ -60,7 +60,7 @@ export default function CreatePostForm() {
                 className="flex flex-1 cursor-pointer items-center gap-2 rounded bg-white p-2"
               >
                 <input
-                  checked
+                  defaultChecked
                   onClick={() => setMode("detail")}
                   className="h-6 w-6 accent-sky-600"
                   type="radio"
