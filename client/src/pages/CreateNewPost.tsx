@@ -4,17 +4,14 @@ import questions from "../data/questions.json";
 import FeedbackQuestion from "../components/FeedbackQuestion";
 import setDocumentTitle from "../utils/setDocumentTitle";
 import { useNavigate } from "react-router-dom";
-import SuccessDialog from "../components/SuccessDialog";
-import { useState } from "react";
 export default function CreateNewPost() {
   setDocumentTitle("New Post | Police Feedback Hub");
-  const [toggleSuccessPopup, setToggleSuccessPopup] = useState<boolean>(false);
   const navigate = useNavigate();
   return (
     <motion.main
       initial={{ x: 200, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      exit={{ x: 300, opacity: 0 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
     >
       <div className="mx-auto max-w-7xl">
@@ -69,7 +66,7 @@ export default function CreateNewPost() {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                setToggleSuccessPopup(true);
+                navigate("/success");
               }}
               type="button"
               className="rounded border-2 border-sky-600 bg-sky-600 px-10 py-1 text-white hover:border-sky-500 hover:bg-sky-500"
@@ -79,9 +76,6 @@ export default function CreateNewPost() {
           </div>
         </form>
       </div>
-      {toggleSuccessPopup && (
-        <SuccessDialog setToggle={setToggleSuccessPopup} />
-      )}
     </motion.main>
   );
 }

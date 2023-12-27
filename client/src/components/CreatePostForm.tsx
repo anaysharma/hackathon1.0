@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function CreatePostForm() {
   const [lang, setLang] = useState<string>("en");
   const [number, setNumber] = useState<string>("");
-  const [mode, setMode] = useState<"detail" | "chat">("detail");
+  const [mode, setMode] = useState<"detail" | "short">("detail");
   const [link, setLink] = useState<string>("");
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function CreatePostForm() {
         Create a new Feedback Post
       </h3>
       <div className="flex flex-wrap gap-2 text-sm max-sm:flex-col">
-        <div className="flex-1 justify-between rounded-md border bg-slate-100 p-2 md:basis-52">
+        <div className="flex-1 justify-between rounded-md border bg-slate-100 p-2 md:basis-64">
           <label className="flex flex-col justify-between gap-3" htmlFor="lang">
             1. Select Language
             <select
@@ -34,7 +34,7 @@ export default function CreatePostForm() {
             </select>
           </label>
         </div>
-        <div className="flex-1 justify-between rounded-md border bg-slate-100 p-2 md:basis-52">
+        <div className="flex-1 justify-between rounded-md border bg-slate-100 p-2 md:basis-64">
           <label
             className="flex flex-col justify-between gap-3"
             htmlFor="number"
@@ -51,7 +51,7 @@ export default function CreatePostForm() {
             />
           </label>
         </div>
-        <div className="flex-1 justify-between rounded-md border bg-slate-100 p-2 md:basis-52">
+        <div className="flex-1 justify-between rounded-md border bg-slate-100 p-2 md:basis-64">
           <div className="flex flex-col justify-between gap-3">
             3. Select Mode
             <div className="flex gap-2">
@@ -71,23 +71,23 @@ export default function CreatePostForm() {
                 detailed post
               </label>
               <label
-                htmlFor="chat"
+                htmlFor="short"
                 className="flex flex-1 cursor-pointer items-center gap-2 rounded bg-white p-2"
               >
                 <input
-                  onClick={() => setMode("chat")}
+                  onClick={() => setMode("short")}
                   className="h-6 w-6 accent-sky-600"
                   type="radio"
                   name="assist"
-                  id="chat"
-                  value="chat"
+                  id="short"
+                  value="short"
                 />
-                chat bot
+                Short Post
               </label>
             </div>
           </div>
         </div>
-        <div className="flex-1 justify-between rounded-md border bg-slate-100 p-2 md:basis-52">
+        <div className="flex-1 justify-between rounded-md border bg-slate-100 p-2 md:basis-64">
           <label className="flex flex-col justify-between gap-3" htmlFor="lang">
             4. Next
             <Link

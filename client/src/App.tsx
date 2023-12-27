@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import { AnimatePresence } from "framer-motion";
 import CreateNewPost from "./pages/CreateNewPost";
 import { useLayoutEffect } from "react";
+import PostSuccess from "./pages/PostSuccess";
 
 function App() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="create" element={<CreateNewPost />} />
+          <Route path="success" element={<PostSuccess />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
