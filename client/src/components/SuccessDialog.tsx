@@ -10,13 +10,14 @@ export default function SuccessDialog({
   const navigate = useNavigate();
   const [count, setCount] = useState<number>(5);
   useEffect(() => {
-    const id1 = () => setToggle(false);
-    const id2 = () => {
-      setCount((prev) => prev - 1);
+    if (count <= 0) return;
+    setTimeout(() => setToggle(false), 5000);
+    const id2 = setTimeout(() => setCount((prev) => prev - 1), 1000);
+
+    return () => {
+      clearTimeout(id2);
     };
-    setTimeout(id1, 5000);
-    setTimeout(id2, 1000);
-  });
+  }, [count, setToggle]);
   return (
     <div className="fixed inset-0 bottom-auto z-50 flex h-svh items-center justify-center bg-black/40 max-sm:items-end">
       <motion.div
