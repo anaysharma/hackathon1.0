@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function Navbar(): JSX.Element {
   return (
-    <nav className="md:px-4 md:py-2 fixed inset-0 bottom-auto bg-white shadow-lg z-50">
+    <nav className="md:px-4 md:py-1 fixed inset-0 bottom-auto bg-white shadow-md z-50">
       <div className="items-center grid grid-cols-3 max-md:grid-cols-2 max-w-7xl mx-auto lg:px-4">
         <div className="font-bold max-md:py-2 max-md:pl-4">
-          Police Feedback System
+          <img src="/logo.png" alt="" className="h-10" />
         </div>
         <ul className="flex gap-3 max-md:col-start-1 max-md:col-end-3 py-3 justify-center max-md:border-t">
           <li>
@@ -22,6 +22,12 @@ export default function Navbar(): JSX.Element {
           </li>
         </ul>
         <div className="flex gap-3 justify-self-end max-md:col-start-2 max-md:row-start-1  max-md:py-2 max-md:pr-4">
+          <Link
+            to="/create"
+            className="bg-sky-600 whitespace-nowrap text-white rounded py-1 w-28 text-center hover:bg-sky-500"
+          >
+            New Post +
+          </Link>
           <Link
             to="/login"
             className="bg-sky-600 text-white rounded py-1 w-20 text-center hover:bg-sky-500"

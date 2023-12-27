@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import setDocumentTitle from "../utils/setDocumentTitle";
 
 export default function Signup(): JSX.Element {
+  setDocumentTitle("Signup | Police Feedback Hub");
+
   return (
     <>
       <main className="flex relative items-center justify-center max-sm:justify-end flex-col h-screen bg-slate-100 px-4">

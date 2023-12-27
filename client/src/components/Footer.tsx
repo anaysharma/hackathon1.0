@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="w-full relative bg-white">
       <div className="grid grid-cols-4 max-lg:grid-cols-3 lg:px-4 max-lg:px-10 max-lg:gap-4 md:flex-row max-w-7xl mx-auto py-16 max-md:flex max-md:flex-col">
         <div className="max-w-[300px]">
-          <span className="font-bold text-2xl">Police Feedback Hub</span>
+          <span className="font-bold text-xl">Police Feedback Hub</span>
           <div className="mt-6 max-w-md">
             <span className="text-sky-600 block">Contact :</span>
             Call on: +91 1234567890
@@ -19,7 +19,7 @@ export default function Footer() {
         </div>
         <div>
           <h3 className="text-xl font-bold mb-6">Navigate</h3>
-          <ul>
+          <ul className="grid gap-2">
             <li className="hover:text-sky-600">
               <span className="text-sky-600 mr-2">■</span>Posts
             </li>
@@ -40,7 +40,7 @@ export default function Footer() {
         </div>
         <div>
           <h3 className="text-xl font-bold mb-6">Links</h3>
-          <ul>
+          <ul className="grid gap-2">
             <li className="hover:text-sky-600">
               <Link to="/" title="go to home page">
                 <span className="text-sky-600 mr-2">■</span>Update records
