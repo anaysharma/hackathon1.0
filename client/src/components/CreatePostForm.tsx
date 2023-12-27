@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function CreatePostForm() {
-  const [lang, setLang] = useState<string>("");
+  const [lang, setLang] = useState<string>("en");
   const [number, setNumber] = useState<string>("");
   const [mode, setMode] = useState<"detail" | "chat">("detail");
   const [link, setLink] = useState<string>("");
