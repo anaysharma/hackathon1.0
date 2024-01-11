@@ -134,6 +134,23 @@ export default function Signup(): JSX.Element {
               />
             </label>
             <label className="grid gap-2 text-slate-600" htmlFor="firstname">
+              Email
+              <input
+                value={state.email}
+                onChange={(e) =>
+                  dispatch({
+                    type: actionTypes.email,
+                    payload: e.target.value,
+                  })
+                }
+                className="rounded border bg-slate-50 px-4 py-2"
+                type="text"
+                name="email"
+                id="email"
+                placeholder="example@email.com"
+              />
+            </label>
+            <label className="grid gap-2 text-slate-600" htmlFor="firstname">
               Permanent Address
               <input
                 value={state.address}

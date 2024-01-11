@@ -5,6 +5,8 @@ const server = express();
 const connectDB = require("./config/connectDB.js");
 const userRoute = require("./routes/user.js");
 
+const cors = require("cors");
+server.use(cors());
 connectDB();
 
 server.use(express.json());
@@ -18,12 +20,3 @@ server.listen(PORT, () => {
 });
 
 // ====================================
-
-const cors = require("cors");
-const corsOptions = {
-  origin: "*",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
-
-server.use(cors(corsOptions));
