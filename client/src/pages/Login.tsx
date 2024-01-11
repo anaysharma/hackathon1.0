@@ -20,7 +20,7 @@ export default function Login(): JSX.Element {
           Police Feedback System
         </h1>
         <form
-          action="/"
+          action="/login"
           method="post"
           className="z-10 mx-4 grid w-full gap-3 rounded-lg border bg-white p-4 shadow-md sm:w-[500px]"
         >
@@ -59,7 +59,7 @@ export default function Login(): JSX.Element {
           <div className="flex flex-wrap items-center gap-4 pt-4">
             <button
               className="flex-grow basis-48 rounded border-2 border-sky-600 bg-sky-600 py-2 text-white hover:border-sky-500 hover:bg-sky-500"
-              type="button"
+              type="submit"
             >
               Login
             </button>

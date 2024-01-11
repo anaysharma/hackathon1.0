@@ -7,6 +7,8 @@ import { AnimatePresence } from "framer-motion";
 import CreateNewPost from "./pages/CreateNewPost";
 import { useLayoutEffect } from "react";
 import PostSuccess from "./pages/PostSuccess";
+import Chat from "./pages/Chat";
+import Posts from "./pages/Posts";
 
 function App() {
   const location = useLocation();
@@ -21,6 +23,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="create" element={<CreateNewPost />} />
           <Route path="success" element={<PostSuccess />} />
+          <Route path="chat" element={<Chat />} />
+          <Route path="post" element={<Posts />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
