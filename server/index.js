@@ -5,6 +5,7 @@ const server = express();
 const connectDB = require("./config/connectDB.js");
 const userRoute = require("./routes/user.js");
 const feedbackRoute = require("./routes/feedback.js");
+const complainRoute = require("./routes/complains.js");
 
 require("dotenv").config();
 
@@ -16,6 +17,7 @@ server.use(express.json());
 
 server.use("/api/v1/user", userRoute);
 server.use("/api/v1", feedbackRoute);
+server.use("/api/v1", complainRoute);
 
 const PORT = process.env.PORT || 5050;
 

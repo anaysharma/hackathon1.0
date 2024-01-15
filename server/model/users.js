@@ -50,6 +50,12 @@ const userSchema = mongoose.Schema({
         ref:"feedback",
     }
   ],
+  complains: [
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Complains",
+    }
+  ],
 });
 
 const User = mongoose.model("User", userSchema);
