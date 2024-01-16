@@ -1,10 +1,9 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 export default function Layout(): JSX.Element {
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <>
       <Navbar />

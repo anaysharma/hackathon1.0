@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
@@ -12,6 +13,7 @@ interface FormState {
   password: string;
   aadhar: string;
   address?: string;
+  role?: string;
 }
 
 const formState: FormState = {
@@ -22,6 +24,7 @@ const formState: FormState = {
   password: "",
   aadhar: "",
   address: "",
+  role: "",
 };
 
 const actionTypes = {
@@ -32,6 +35,7 @@ const actionTypes = {
   password: "password",
   address: "address",
   aadhar: "aadhar",
+  role: "role",
 } as const;
 
 const reducer = (
@@ -45,25 +49,19 @@ const reducer = (
 
 export default function Signup(): JSX.Element {
   setDocumentTitle("Signup | Police Feedback Hub");
-
   const [toggleVisibility, setToggleVisibility] = useState<boolean>(false);
   const [state, dispatch] = useReducer(reducer, formState);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    fetch("http://localhost:3000/api/v1/user/register", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
-      },
-      body: JSON.stringify(state),
+    axios({
+      method: "post",
+      url: "http://localhost:3000/api/v1/user/register",
+      data: state,
     })
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-      });
+      .then(() => navigate("/signupsuccess"))
+      .catch(() => alert("something went wrong, please try again."));
   };
 
   return (
@@ -73,7 +71,7 @@ export default function Signup(): JSX.Element {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-100"></div>
           <img src="bg.jpg" alt="" className="h-full w-full object-cover" />
         </div>
-        <h1 className="z-10 flex items-center py-6 text-2xl font-bold max-sm:flex-1">
+        <h1 className="z-10 flex flex-col items-center gap-6 py-6 text-2xl font-bold drop-shadow-lg max-sm:flex-1">
           Police Feedback System
         </h1>
         <form
@@ -81,6 +79,31 @@ export default function Signup(): JSX.Element {
           className="z-10 mx-4 grid w-full gap-3 rounded-lg border bg-white p-4 shadow-md sm:w-[500px]"
         >
           <legend className="text-lg font-bold">Quick Signup: </legend>
+
+          <div className="z-10 flex items-center justify-between  gap-3 rounded-lg">
+            <label htmlFor="role" className="whitespace-nowrap">
+              User Role:
+            </label>
+            <select
+              name="role"
+              id="role"
+              className="w-full flex-1 basis-full rounded-md border px-3 py-2 text-base"
+              value={state.role}
+              onChange={(e) =>
+                dispatch({
+                  type: actionTypes.role,
+                  payload: e.target.value,
+                })
+              }
+            >
+              <option value="FeedbackSubmitter" defaultChecked>
+                Normal User
+              </option>
+              <option value="PoliceStationUser">Station Admin</option>
+              <option value="DistrictUser">District Admin</option>
+              <option value="StateUser">State Admin</option>
+            </select>
+          </div>
           <div className="grid gap-4">
             <label className="grid gap-2 text-slate-600" htmlFor="firstname">
               First Name

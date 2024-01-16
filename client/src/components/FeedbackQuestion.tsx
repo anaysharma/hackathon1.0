@@ -2,12 +2,14 @@ interface feedbackQuestionProps {
   srno: number;
   question: string;
   option: string[];
+  setAns: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 export default function FeedbackQuestion({
   srno,
   question,
   option,
+  setAns,
 }: feedbackQuestionProps): JSX.Element {
   const queId = question.split(" ").join("_");
   return (
@@ -25,6 +27,13 @@ export default function FeedbackQuestion({
               className="flex cursor-pointer items-center gap-2 rounded px-3 py-2 hover:bg-slate-50"
             >
               <input
+                onChange={() =>
+                  setAns((prev) => {
+                    const state = JSON.parse(JSON.stringify(prev));
+                    state[srno - 1] = idx;
+                    return state;
+                  })
+                }
                 className="h-5 w-5 accent-sky-600"
                 type="radio"
                 value={el}

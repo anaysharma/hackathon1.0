@@ -26,8 +26,8 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const isUser = await User.findOne({ email: email });
+    const { email, password, role } = req.body;
+    const isUser = await User.findOne({ email: email, role: role });
     if (!isUser) return res.status(400).json("Email not registered");
     const isMatch = await bcrypt.compare(password, isUser.password);
     if (!isMatch) return res.status(401).json("Wrong Credential");
@@ -39,4 +39,22 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const getUser = async (req, res) => {
+  try {
+    const { token } = req.body;
+    const payload = jwt.verify(token, process.env.SECRET_KEY, {
+      algorithms: ["HS256"],
+    });
+    const id = payload.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return res.status(400).json("Email not registered");
+    return res.status(200).json({ user: user });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(`Cannot find user ${error}`);
+  }
+};
+
+module.exports = { register, login, getUser };

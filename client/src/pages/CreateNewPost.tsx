@@ -1,13 +1,20 @@
+import axios from "axios";
 import { motion } from "framer-motion";
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
-import questions from "../data/questions.json";
+import { useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import FeedbackQuestion from "../components/FeedbackQuestion";
+import questions from "../data/questions.json";
+import getUser from "../utils/getUser";
 import setDocumentTitle from "../utils/setDocumentTitle";
 export default function CreateNewPost() {
   setDocumentTitle("New Post | Police Feedback Hub");
   const navigate = useNavigate();
+
+  const [answers, setAnswers] = useState<number[]>([]);
+
   const [searchParams] = useSearchParams();
-  const query = searchParams.get("q");
+  const initalQuery = searchParams.get("q") ?? "";
+  const [query, setQuery] = useState<string>(initalQuery);
 
   return (
     <motion.main
@@ -31,6 +38,7 @@ export default function CreateNewPost() {
           {questions.questions.map((que, idx) => (
             <FeedbackQuestion
               srno={idx + 1}
+              setAns={setAnswers}
               question={que.question}
               option={que.options}
               key={`sdkjfbkjasdfjhkb${idx}`}
@@ -155,6 +163,8 @@ export default function CreateNewPost() {
                 id="other"
                 cols={30}
                 rows={5}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
                 className="rounded border px-3 py-1 font-normal shadow-inner"
                 placeholder="start typing here"
               >
@@ -173,6 +183,19 @@ export default function CreateNewPost() {
             <button
               onClick={(e) => {
                 e.preventDefault();
+                const usr = async () => {
+                  const u = await getUser();
+                  return u.user;
+                };
+                axios({
+                  method: "post",
+                  url: "localhost:3000/api/v1/feedback",
+                  data: {
+                    User: usr(),
+                    questions: answers,
+                    query,
+                  },
+                });
                 navigate("/success");
               }}
               type="button"
