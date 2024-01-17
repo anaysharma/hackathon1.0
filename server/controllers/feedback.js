@@ -37,7 +37,7 @@ exports.feedback = async (req, res) => {
     catch (err) {
         console.log("issue aa gya");
         console.log("submission nhi ho paaya",err);
-        console.error(error.message);
+        console.error(err.message);
         res.status(500)
         .json({
                 success: false,
