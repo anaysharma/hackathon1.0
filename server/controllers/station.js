@@ -41,3 +41,23 @@ exports.register = async (req, res) => {
         })
     }
 }
+
+// ====================================================================================================================//
+// to get all the stations object 
+
+exports.getAllStations = async (req, res) => {
+    try {
+        const AllStations = await policeStation.find({});
+        //response
+        res.status(200)
+        .json({
+            success:true,
+            data:AllStations,
+            message:"All stations are fetched",
+        });
+
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json("Cannot find any Station");
+    }
+  };

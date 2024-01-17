@@ -20,8 +20,8 @@ server.use(express.json());
 server.use("/api/v1/user", userRoute);
 server.use("/api/v1", feedbackRoute);
 server.use("/api/v1", complainRoute);
-server.use("/api/v1", districtRoute);
-server.use("/api/v1", stationRoute);
+server.use("/api/v1/district", districtRoute);
+server.use("/api/v1/station", stationRoute);
 
 const PORT = process.env.PORT || 5050;
 

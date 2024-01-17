@@ -3,6 +3,7 @@
 const feedback = require("../model/feedback");
 const User = require("../model/users");
 const policeStation = require("../model/policeStation");
+const District = require("../model/district");
 
 //define route handler
 
@@ -53,7 +54,6 @@ exports.getStationFeed = async (req, res) => {
     try {
         const id = req.params.id;
         const stationFeeds = await feedback.find({ "stations": id });
-        
         if (!stationFeeds) {
             return res.status(404).json({
               success: false,
@@ -69,7 +69,7 @@ exports.getStationFeed = async (req, res) => {
     catch (err) {
         console.log("issue aa gya");
         console.log("Feedback fetch nhi ho paaya",err);
-        console.error(error.message);
+        console.error(err.message);
         res.status(500)
         .json({
                 success: false,
@@ -85,36 +85,83 @@ exports.getStationFeed = async (req, res) => {
 
 
 exports.getAverageRatings = async (req, res) => {
-    try {
-      const policeStations = await feedback.aggregate([
-        {
-          $group: {
-            _id: "${stations}",
-            averageQuestion1: { $avg: "$q1" },
-            averageQuestion2: { $avg: "$q2" },
-            averageQuestion3: { $avg: "$q3" },
-            averageQuestion4: { $avg: "$q4" },
-            averageQuestion5: { $avg: "$q5" },
-            averageQuestion6: { $avg: "$q6" },
-            averageQuestion7: { $avg: "$q7" },
-          },
-        },
-      ]);
-  
-      res.status(200).json({
-        success: true,
-        data: policeStations,
-        message: 'Average Ratings Calculated Successfully',
-      });
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).json({
-        success: false,
-        data: "Internal Server Error",
-        message: err.message,
-      });
+  try {
+    const districtId = req.params.id;
+    console.log(districtId);
+
+    // Find the district by ID
+    const district = await District.findById(districtId);
+
+    if (!district) {
+      return res.status(404).json({ error: 'District not found' });
     }
+
+    // Get all stations in the district
+    const stations = await policeStation.find({ _id: { $in: district.stations } });
+
+    // Create an object to store averages for each question
+    const averageFeedback = {};
+
+    // Iterate through each station
+    for (const station of stations) {
+      // Find all feedback for the current station
+      const stationFeedback = await feedback.find({ stations: station._id });
+
+      // Calculate the average for each question
+      const totalFeedback = stationFeedback.length;
+      const sumFeedback = (question) =>
+        stationFeedback.reduce((sum, feedback) => sum + feedback[question], 0);
+
+      averageFeedback[station.name] = {
+        q1: totalFeedback > 0 ? sumFeedback('q1') / totalFeedback : 0,
+        q2: totalFeedback > 0 ? sumFeedback('q2') / totalFeedback : 0,
+        q3: totalFeedback > 0 ? sumFeedback('q3') / totalFeedback : 0,
+        q4: totalFeedback > 0 ? sumFeedback('q4') / totalFeedback : 0,
+        q5: totalFeedback > 0 ? sumFeedback('q5') / totalFeedback : 0,
+        q6: totalFeedback > 0 ? sumFeedback('q6') / totalFeedback : 0,
+        q7: totalFeedback > 0 ? sumFeedback('q7') / totalFeedback : 0,
+      };
+    }
+
+    // Send the average feedback as a response
+    res.json(averageFeedback);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 };
+
+// exports.getAverageRatings = async (req, res) => {
+//     try {
+//       const policeStations = await feedback.aggregate([
+//         {
+//           $group: {
+//             _id: "stations",
+//             averageQuestion1: { $avg: "$q1" },
+//             averageQuestion2: { $avg: "$q2" },
+//             averageQuestion3: { $avg: "$q3" },
+//             averageQuestion4: { $avg: "$q4" },
+//             averageQuestion5: { $avg: "$q5" },
+//             averageQuestion6: { $avg: "$q6" },
+//             averageQuestion7: { $avg: "$q7" },
+//           },
+//         },
+//       ]);
+  
+//       res.status(200).json({
+//         success: true,
+//         data: policeStations,
+//         message: 'Average Ratings Calculated Successfully',
+//       });
+//     } catch (err) {
+//       console.error(err.message);
+//       res.status(500).json({
+//         success: false,
+//         data: "Internal Server Error",
+//         message: err.message,
+//       });
+//     }
+// };
   
 
 // ===========================================================================================================//

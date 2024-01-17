@@ -34,3 +34,27 @@ exports.register = async (req, res) => {
         })
     }
 }
+
+
+// ====================================================================================================================//
+// to get all the district object 
+
+exports.getAllDistricts = async (req, res) => {
+    try {
+        const allDistricts = await District.find({});
+        //response
+        res.status(200)
+        .json({
+            success:true,
+            data:allDistricts,
+            message:"All District are fetched",
+        });
+
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json("Cannot find any District");
+    }
+};
+  
+// ======================================================================================================================== //
+// get all feedbacks for district

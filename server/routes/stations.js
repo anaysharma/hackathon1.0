@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 // import controller
-const { register } = require("../controllers/station");
+const { register, getAllStations } = require("../controllers/station");
 
 //define API routes
-router.post("/station/register", register);
+router.post("/register", register);
+router.get("/all", getAllStations);
 
 module.exports = router;
