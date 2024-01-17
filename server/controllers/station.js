@@ -17,7 +17,7 @@ exports.register = async (req, res) => {
         const savedStation = await station.save();
         //find the user by id and add the new feedback to its feedbacks array
         
-        const updatedDistrict = await District.findByIdAndUpdate(station, { $push: { stations: savedStation._id } }, { new: true })
+        const updatedDistrict = await District.findByIdAndUpdate(district, { $push: { stations: savedStation._id } }, { new: true })
             .populate("stations")
             .exec();
 

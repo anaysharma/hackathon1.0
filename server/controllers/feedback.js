@@ -9,18 +9,18 @@ const policeStation = require("../model/policeStation");
 exports.feedback = async (req, res) => {
     try {
         // extract title & description from request body
-        const {user, station, question1, question2} = req.body;
-        // create a new feedback obj 
-        const feed = new feedback({ user, station, question1, question2 });
+      const { users, stations, q1, q2, q3, q4, q5, q6, q7, query } = req.body;
+      // create a new feedback obj 
+      const feed = new feedback({ users, stations, q1, q2, q3, q4, q5, q6, q7, query });
         // and insert into db
         const savedFeed = await feed.save();
         //find the user by id and add the new feedback to its feedbacks array
         
-        const updatedUser = await User.findByIdAndUpdate(user, { $push: { feedbacks: savedFeed._id } }, { new: true })
+        const updatedUser = await User.findByIdAndUpdate(users, { $push: { feedbacks: savedFeed._id } }, { new: true })
             .populate("feedbacks")
             .exec();
         
-        const updatedStation = await policeStation.findByIdAndUpdate(station, { $push: { feedbacks: savedFeed._id } }, { new: true })
+        const updatedStation = await policeStation.findByIdAndUpdate(stations, { $push: { feedbacks: savedFeed._id } }, { new: true })
             .populate("feedbacks")
             .exec();
         
@@ -52,12 +52,12 @@ exports.feedback = async (req, res) => {
 exports.getStationFeed = async (req, res) => {
     try {
         const id = req.params.id;
-        const stationFeeds = await feedback.find({ "policeStation": id })
+        const stationFeeds = await feedback.find({ "stations": id });
         
         if (!stationFeeds) {
             return res.status(404).json({
-                success: false,
-                message:"No Data Found with the given id",
+              success: false,
+              message:"No Data Found with the given id",
             })
         }
         res.status(200).json({
@@ -68,7 +68,7 @@ exports.getStationFeed = async (req, res) => {
     }
     catch (err) {
         console.log("issue aa gya");
-        console.log("submission nhi ho paaya",err);
+        console.log("Feedback fetch nhi ho paaya",err);
         console.error(error.message);
         res.status(500)
         .json({
@@ -89,9 +89,14 @@ exports.getAverageRatings = async (req, res) => {
       const policeStations = await feedback.aggregate([
         {
           $group: {
-            _id: "$policeStation",
-            averageQuestion1: { $avg: "$question1" },
-            averageQuestion2: { $avg: "$question2" },
+            _id: "${stations}",
+            averageQuestion1: { $avg: "$q1" },
+            averageQuestion2: { $avg: "$q2" },
+            averageQuestion3: { $avg: "$q3" },
+            averageQuestion4: { $avg: "$q4" },
+            averageQuestion5: { $avg: "$q5" },
+            averageQuestion6: { $avg: "$q6" },
+            averageQuestion7: { $avg: "$q7" },
           },
         },
       ]);
@@ -121,8 +126,13 @@ exports.getDistrictSummary = async (req, res) => {
       {
         $group: {
           _id: "$district",
-          averageQuestion1: { $avg: "$question1" },
-          averageQuestion2: { $avg: "$question2" },
+          averageQuestion1: { $avg: "$q1" },
+          averageQuestion2: { $avg: "$q2" },
+          averageQuestion3: { $avg: "$q3" },
+          averageQuestion4: { $avg: "$q4" },
+          averageQuestion5: { $avg: "$q5" },
+          averageQuestion6: { $avg: "$q6" },
+          averageQuestion7: { $avg: "$q7" },
         },
       },
     ]);

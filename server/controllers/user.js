@@ -15,10 +15,11 @@ const register = async (req, res) => {
     });
 
     // generate jwt
-    const token = await jwt.sign({ id: newUser._id }, "Secretkey");
+    const token = await jwt.sign({ id: newUser._id }, process.env.SECRET_KEY)
 
     res.status(201).json({ token });
   } catch (error) {
+    console.log()
     console.log(error);
     return res.status(500).json(`Error in user registration ${error}`);
   }

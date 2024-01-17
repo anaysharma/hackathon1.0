@@ -6,10 +6,6 @@ const stationSchema = new mongoose.Schema(
         type: String,
         required: true,
     },
-    headName: { // user from station
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"User",
-    },
     district: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "district",
