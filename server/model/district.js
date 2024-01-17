@@ -20,4 +20,4 @@ const districtSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("district", districtSchema);
+module.exports = mongoose.model("District", districtSchema);

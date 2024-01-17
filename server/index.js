@@ -6,6 +6,8 @@ const connectDB = require("./config/connectDB.js");
 const userRoute = require("./routes/user.js");
 const feedbackRoute = require("./routes/feedback.js");
 const complainRoute = require("./routes/complains.js");
+const districtRoute = require("./routes/district.js");
+const stationRoute = require("./routes/stations.js");
 
 require("dotenv").config();
 
@@ -18,6 +20,8 @@ server.use(express.json());
 server.use("/api/v1/user", userRoute);
 server.use("/api/v1", feedbackRoute);
 server.use("/api/v1", complainRoute);
+server.use("/api/v1", districtRoute);
+server.use("/api/v1", stationRoute);
 
 const PORT = process.env.PORT || 5050;
 
