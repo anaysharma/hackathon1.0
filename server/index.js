@@ -19,7 +19,7 @@ server.use(express.json());
 
 server.use("/api/v1/user", userRoute);
 server.use("/api/v1", feedbackRoute);
-server.use("/api/v1", complainRoute);
+server.use("/api/v1/complain", complainRoute);
 server.use("/api/v1/district", districtRoute);
 server.use("/api/v1/station", stationRoute);
 

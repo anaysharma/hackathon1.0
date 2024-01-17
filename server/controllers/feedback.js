@@ -17,13 +17,13 @@ exports.feedback = async (req, res) => {
         const savedFeed = await feed.save();
         //find the user by id and add the new feedback to its feedbacks array
         
-        const updatedUser = await User.findByIdAndUpdate(users, { $push: { feedbacks: savedFeed._id } }, { new: true })
-            .populate("feedbacks")
-            .exec();
+      const updatedUser = await User.findByIdAndUpdate(users, { $push: { feedbacks: savedFeed._id } }, { new: true });
+            // .populate("feedbacks")
+            // .exec();
         
-        const updatedStation = await policeStation.findByIdAndUpdate(stations, { $push: { feedbacks: savedFeed._id } }, { new: true })
-            .populate("feedbacks")
-            .exec();
+      const updatedStation = await policeStation.findByIdAndUpdate(stations, { $push: { feedbacks: savedFeed._id } }, { new: true }); 
+            // .populate("feedbacks")
+            // .exec();
         
         // send a json response with a success flag
         res.json({
