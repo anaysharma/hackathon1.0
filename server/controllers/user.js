@@ -15,11 +15,11 @@ const register = async (req, res) => {
     });
 
     // generate jwt
-    const token = await jwt.sign({ id: newUser._id }, process.env.SECRET_KEY)
+    const token = await jwt.sign({ id: newUser._id }, process.env.SECRET_KEY);
 
     res.status(201).json({ token });
   } catch (error) {
-    console.log()
+    console.log();
     console.log(error);
     return res.status(500).json(`Error in user registration ${error}`);
   }
@@ -58,4 +58,22 @@ const getUser = async (req, res) => {
   }
 };
 
-module.exports = { register, login, getUser };
+const getID = async (req, res) => {
+  try {
+    const { token } = req.body;
+    const payload = jwt.verify(token, process.env.SECRET_KEY, {
+      algorithms: ["HS256"],
+    });
+    const id = payload.id;
+
+    const user = await User.findById(id);
+
+    if (!user) return res.status(400).json("Email not registered");
+    return res.status(200).json({ id: id });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(`Cannot find user ${error}`);
+  }
+};
+
+module.exports = { register, login, getUser, getID };

@@ -18,3 +18,23 @@ export default async function getUser() {
 
   return user;
 }
+
+export async function getID() {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    console.log("token not found");
+    return;
+  }
+
+  const user = await axios({
+    method: "post",
+    url: "http://localhost:3000/api/v1/user/getid",
+    data: { token },
+  })
+    .then((res) => res.data)
+    .then((data) => data)
+    .catch(console.error);
+
+  return user;
+}
