@@ -42,7 +42,7 @@ exports.register = async (req, res) => {
 
 exports.getAllDistricts = async (req, res) => {
     try {
-        const allDistricts = await District.find({});
+        const allDistricts = await District.find({}).populate("stations").exec();
         //response
         res.status(200)
         .json({
