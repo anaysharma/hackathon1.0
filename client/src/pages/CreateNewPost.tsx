@@ -1,20 +1,87 @@
 import axios from "axios";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useReducer, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import FeedbackQuestion from "../components/FeedbackQuestion";
 import questions from "../data/questions.json";
 import getUser from "../utils/getUser";
 import setDocumentTitle from "../utils/setDocumentTitle";
+
+interface stateTypes {
+  q1: number;
+  q2: number;
+  q3: number;
+  q4: number;
+  q5: number;
+  q6: number;
+  q7: number;
+  query: string;
+  stations: string;
+}
+
+const initialState: stateTypes = {
+  q1: 0,
+  q2: 0,
+  q3: 0,
+  q4: 0,
+  q5: 0,
+  q6: 0,
+  q7: 0,
+  query: "",
+  stations: "",
+};
+
+function reducer(
+  state: stateTypes,
+  { type, payload }: { type: string; payload: string | number },
+) {
+  const newState = JSON.parse(JSON.stringify(state));
+  newState[type] = payload;
+  return newState;
+}
 export default function CreateNewPost() {
   setDocumentTitle("New Post | Police Feedback Hub");
   const navigate = useNavigate();
 
-  const [answers, setAnswers] = useState<number[]>([]);
+  const [userID, setUserID] = useState<string>("");
 
-  const [searchParams] = useSearchParams();
-  const initalQuery = searchParams.get("q") ?? "";
-  const [query, setQuery] = useState<string>(initalQuery);
+  const [answers, dispatch] = useReducer(reducer, initialState);
+  const [allStations, setAllStations] = useState<
+    { name: string; _id: string }[]
+  >([]);
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "http://localhost:3000/api/v1/station/all",
+    })
+      .then((res) => res.data)
+      .then((data) => {
+        setAllStations(data.data);
+        dispatch({ type: "stations", payload: data.data[0]._id });
+      });
+
+    async function getid() {
+      const user = await getUser();
+      setUserID(user.user._id);
+    }
+
+    getid();
+  }, []);
+
+  useEffect(() => console.log(answers, userID), [answers, userID]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios({
+      method: "post",
+      url: "http://localhost:3000/api/v1/feedback",
+      data: {
+        ...answers,
+        users: userID,
+      },
+    }).then(() => navigate("/success"));
+  };
 
   return (
     <motion.main
@@ -34,11 +101,34 @@ export default function CreateNewPost() {
           </Link>
           <h2 className="flex-1 pl-4 font-bold">Create new feedback post</h2>
         </div>
-        <form className="mx-auto grid max-w-5xl gap-3 px-3 text-sm">
+        <form
+          className="mx-auto grid max-w-5xl gap-3 px-3 text-sm"
+          onSubmit={handleSubmit}
+        >
+          <label
+            htmlFor="station"
+            className="flex w-full items-center gap-4 rounded-lg border bg-white p-3 shadow-md"
+          >
+            <span className="whitespace-nowrap">select police station:</span>
+            <select
+              name="station"
+              id="station"
+              onChange={(e) =>
+                dispatch({ type: "stations", payload: e.target.value })
+              }
+              className="w-full rounded-md border px-3 py-2"
+            >
+              {allStations.map((station, idx) => (
+                <option value={station._id} key={idx}>
+                  {station.name}
+                </option>
+              ))}
+            </select>
+          </label>
           {questions.questions.map((que, idx) => (
             <FeedbackQuestion
-              srno={idx + 1}
-              setAns={setAnswers}
+              srno={idx}
+              setAns={dispatch}
               question={que.question}
               option={que.options}
               key={`sdkjfbkjasdfjhkb${idx}`}
@@ -163,12 +253,14 @@ export default function CreateNewPost() {
                 id="other"
                 cols={30}
                 rows={5}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                value={answers.query}
+                onChange={(e) =>
+                  dispatch({ type: "query", payload: e.target.value })
+                }
                 className="rounded border px-3 py-1 font-normal shadow-inner"
                 placeholder="start typing here"
               >
-                {query}
+                {answers.query}
               </textarea>
             </label>
           </div>
@@ -181,24 +273,7 @@ export default function CreateNewPost() {
               Cancel
             </button>
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                const usr = async () => {
-                  const u = await getUser();
-                  return u.user;
-                };
-                axios({
-                  method: "post",
-                  url: "localhost:3000/api/v1/feedback",
-                  data: {
-                    User: usr(),
-                    questions: answers,
-                    query,
-                  },
-                });
-                navigate("/success");
-              }}
-              type="button"
+              type="submit"
               className="rounded border-2 border-sky-600 bg-sky-600 px-10 py-1 text-white hover:border-sky-500 hover:bg-sky-500"
             >
               Submit

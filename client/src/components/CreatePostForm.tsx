@@ -87,12 +87,11 @@ export default function CreatePostForm() {
             </div>
           </div>
         </div>
-        <div className="flex-1 justify-between rounded-md border bg-slate-100 p-2 sm:basis-64">
-          <label className="flex flex-col justify-between gap-3" htmlFor="lang">
-            4. Next
+        <div className="flex flex-1 items-center rounded-md border bg-slate-100 p-2 sm:basis-64">
+          <label className="flex flex-1 items-center" htmlFor="lang">
             <Link
               to={link}
-              className="rounded bg-sky-600 px-3 py-2 text-center font-medium text-white hover:bg-sky-500"
+              className="h-full flex-1 basis-full rounded bg-sky-600 px-3 py-2 text-center font-medium text-white hover:bg-sky-500"
             >
               Go
             </Link>

@@ -4,7 +4,7 @@ import userRoles from "../data/userRoles.json";
 import getUser from "../utils/getUser";
 
 export default function Navbar(): JSX.Element {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<{ firstName: string; lastName: string }>();
   const [role, setRole] = useState("");
   const navigate = useNavigate();
 
@@ -72,7 +72,7 @@ export default function Navbar(): JSX.Element {
           {role === userRoles["district"] && (
             <>
               <li>
-                <Link to="/feedbacks">Feedbacks</Link>
+                <Link to="/summary">Summary</Link>
               </li>
               <li>
                 <Link to="/complain">Complaints</Link>
