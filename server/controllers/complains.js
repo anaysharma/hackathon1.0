@@ -52,7 +52,7 @@ exports.complain = async (req, res) => {
 
 exports.getAllComplains = async (req, res) => {
     try {
-        const allComplains = await Complain.find({})
+        const allComplains = await Complain.find({});
         
         if (!allComplains) {
             return res.status(404).json({
@@ -68,7 +68,7 @@ exports.getAllComplains = async (req, res) => {
     }
     catch (err) {
         console.log("issue aa gya");
-        console.error(error.message);
+        console.error(err.message);
         res.status(500)
         .json({
                 success: false,
