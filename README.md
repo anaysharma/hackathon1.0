@@ -2,7 +2,7 @@
 
 > Pre-requistics
 
-- NodeJS
+- NodeJS2
 - NPM
 - Git
 
